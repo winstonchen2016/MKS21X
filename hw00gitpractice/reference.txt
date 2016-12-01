@@ -1,6 +1,6 @@
-clone
-add
-status
-commit
-push
-pull
+clone - Copies repo into new computer directory
+add - Updates work
+status - Checks files
+commit - Locks in and records changes
+push - Syncs with and updates site
+pull - Fetch from and integrate with another repository or a local branch
