@@ -80,6 +80,6 @@ public class Barcode implements Comparable<Barcode>{
 	Barcode d = new Barcode("08451");
 	System.out.println(c.compareTo(b)); //should be 1
 	System.out.println(b.compareTo(c)); //should be -1
-	System.out.println(a.compareTo(d)); //should be -1
+	System.out.println(a.compareTo(d)); //should be 0
     }
 }
