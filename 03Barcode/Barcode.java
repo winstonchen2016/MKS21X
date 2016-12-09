@@ -34,16 +34,16 @@ public class Barcode implements Comparable<Barcode>{
     //postcondition: format zip + check digit + Barcode 
     //ex. "084518  |||:::|::|::|::|:|:|::::|||::|:|"      
     public String toString(){
-	return toCode(_zip);
+	return _zip + checkSum(_zip) + " " + toCode(_zip);
     } 
 
     public static String toCode(String str){
 	str += checkSum(str);
-	String ret = str + checkSum(str) + " |";
+	String ret = "|";
 	for (int i = 0; i < str.length(); i++){
 	    ret += codes[Integer.parseInt(str.substring(i, i+1))];
 	}
-	ret += "| ";
+	ret += "|";
 	return ret;
     }
 
@@ -91,8 +91,9 @@ public class Barcode implements Comparable<Barcode>{
     }
 
     public static void main(String[]args){
-	System.out.println(Integer.parseInt("08451"));
+	System.out.println(Integer.parseInt("08451")); //should be 8451
 	Barcode a = new Barcode("08451");
+	System.out.println(Barcode.toCode("08451")); //should be "|||:::|::|::|::|:|:|::::|||::|:|"
 	System.out.println(a.toString()); //should be "084518  |||:::|::|::|::|:|:|::::|||::|:|"
 	//Barcode z = new Barcode("0wvbe"); //should throw IllegalArgementException (not #)
 	//Barcode y = new Barcode("0845111"); //should throw IllegalArgementException (wrong length)
@@ -103,7 +104,7 @@ public class Barcode implements Comparable<Barcode>{
 	System.out.println(c.compareTo(b)); //should be 1
 	System.out.println(b.compareTo(c)); //should be -1
 	System.out.println(a.compareTo(d)); //should be 0
-	System.out.println(Barcode.toCode("")); //should be "00 |||:::|"
+	System.out.println(Barcode.toCode("")); //should be "|||:::|" (checkDigit is 0)
 	//System.out.println(Barcode.toZip("")); //should throw IAE (wrong length)
 	//System.out.println(Barcode.toZip("egoruvbisebgeigbaeipbgaegb")); //should throw IAE (wrong length)
 	//System.out.println(Barcode.toZip("egoruvbiebgeigbaeipbjqopaegjsowb")); //should throw IAE (missing |'s)
