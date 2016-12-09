@@ -4,11 +4,17 @@ public class Barcode implements Comparable<Barcode>{
     private int _checkDigit;
     private static final String[]codes = {"||:::",":::||","::|:|","::||:",":|::|",":|:|:",":||::","|:::|","|::|:","|:|::",};
     
-    // constructors
+    //constructors
     //precondtion: _zip.length() = 5 and zip contains only digits.
     //postcondition: throws a runtime exception zip is not the correct length
     //               or zip contains a non digit
     //               _zip and _checkDigit are initialized.
+    /**
+     *Constructor that initializes _zip
+     *
+     *@param zip - The 5 digit zipcode
+     *@throws IllegalArgumentException - if zip is not the correct length or zip contains a non digit
+     */
     public Barcode(String zip) {
 	if (zip.length() != 5){
 	    throw new IllegalArgumentException("The zip code has an invalid length.");
@@ -33,6 +39,10 @@ public class Barcode implements Comparable<Barcode>{
     
     //postcondition: format zip + check digit + Barcode 
     //ex. "084518  |||:::|::|::|::|:|:|::::|||::|:|"      
+    /**
+     *@return A String in the format: "084518 |||:::|::|::|::|:|:|::::|||::|:|"
+     */
+    @Override
     public String toString(){
 	return _zip + checkSum(_zip) + " " + toCode(_zip);
     } 
