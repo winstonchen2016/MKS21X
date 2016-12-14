@@ -11,22 +11,25 @@ public class Sorts{
      */
     public static void selectionSort(int[] data){
 	boolean hasChanged = false;
-	int temp = 0;
 	for(int i = 0; i < data.length; i++){
+	    int lowest = data[i];
+	    int lowestPos = -1;
 	    for(int a = i; a < data.length; a++){
-		if(data[a] < data[i]){
-		    temp = data[a];
+		
+		if(data[a] < lowest){
+		    lowest = data[a];
+		    lowestPos = a;
 		    hasChanged = true;
 		}
-		if(hasChanged){
-		    System.out.println("temp = " + temp);
-		    System.out.println("a = " + data[a]);
-		    System.out.println("i = " + data[i]);
-		    data[a] = data[i];
-		    data[i] = temp;
-		    hasChanged = false;
-		    System.out.println(toString(data));
-		}
+	    }
+	    if(hasChanged){
+		//System.out.println("lowest = " + lowest);
+		//System.out.println("a = " + lowestPos);
+		//System.out.println("i = " + data[i]);
+		data[lowestPos] = data[i];
+		data[i] = lowest;
+		hasChanged = false;
+		//System.out.println(toString(data));
 	    }
 	}
     }
