@@ -42,12 +42,17 @@ public class Sorts{
 	for(int i = 1; i < data.length; i++){
 	    if(data[i] < data[i-1]){
 		int temp = data[i];
-		int a = i;
-		while(data[a] > data[i]){
-		    data[a] = data [a-1];
+		int a = i - 1;
+		while(a != -1 && data[a] > temp){
+		    data[a+1] = data [a];
 		    a -= 1;
 		}
-		data[a] = temp;
+		if(a == -1){
+		    data[0] = temp;
+		}
+		else if(data[a]<temp){
+		    data[a+1] = temp;
+		}
 	    }
 	}
     }
