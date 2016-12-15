@@ -57,6 +57,28 @@ public class Sorts{
 	}
     }
 
+    /**Bubble sort of an int array. 
+     *Upon completion, the elements of the array will be in increasing order.
+     *@param data  the elements to be sorted.
+     */
+    public static void bubbleSort(int[] data){
+	int l = data.length - 1;
+	for(int i = 0; i < l; l -= 1){
+	    for(int a = 0; a < l; a +=1){
+		boolean hasSwapped = false;
+		if(data[a+1] < data[a]){
+		    hasSwapped = true;
+		    int temp = data[a];
+		    data[a] = data[a+1];
+		    data[a+1] = temp;
+		}
+		if(!hasSwapped){
+		    return;
+		}
+	    }
+	}
+    }
+
     public static String toString(int[]data){
 	String ans = "[";
 	for(int i = 0; i < data.length - 1; i++){
@@ -79,5 +101,8 @@ public class Sorts{
 	int[]data2 = {3, 7, 4, 9, 5, 2, 6, 1};
 	insertionSort(data2);
 	System.out.println(toString(data2)); //[1, 2, 3, 4, 5, 6, 7, 9]
+	int[]data3 = {5, 1, 4, 2, 8};
+	bubbleSort(data3);
+	System.out.println(toString(data3)); //[1, 4, 2, 5, 8]
     }
 }
