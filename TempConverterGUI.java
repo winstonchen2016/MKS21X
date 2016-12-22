@@ -1,34 +1,63 @@
 import javax.swing.*;
-import java.awt.*;
-public class TempConverterGUI extends JFrame {
-    private Container pane;
+import java.awt.*;//NEW STUFF!
+import java.awt.event.*;
 
-    private JButton b1, b2;
-    private JTextField t1, t2;
- 
-    //CONSTRUCTOR SETS EVERYTHING UP
+public class TempConverterGUI extends JFrame implements ActionListener{
+    private Container pane;
+    private JLabel j;
+    private JTextField t;
+
     public TempConverterGUI() {
 	this.setTitle("Temperature Converter");
 	this.setSize(600,400);
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-    
+
 	pane = this.getContentPane();
-	pane.setLayout(new FlowLayout());  //NOTE!! THIS CAN BE CHANGED (see below)
-    
-	b1 = new JButton("Celsius to Fahrenheit");
-	b2 = new JButton("Fahrenheit to Celsius");
-	t1 = new JTextField(12);
-	t2 = new JTextField(12);
-	pane.add(b1);
+	pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
+	JButton b = new JButton("Celsius to Fahrenheit");
+	b.addActionListener(this);
+	b.setActionCommand("CtoF");
+	JButton b2 = new JButton("Fahrenheit to Celsius");
+	b2.addActionListener(this);
+	b2.setActionCommand("FtoC");
+	t = new JTextField(10);
+	//JCheckBox c = new JCheckBox("OverClock");
+	j = new JLabel("Imput tempertature in the text box. Integers only please!");
+	//pane.add(c);
+	pane.add(t);
+	pane.add(b);
 	pane.add(b2);
-	pane.add(t1);
-	pane.add(t2);
+	pane.add(j);
     }
 
-    //MAIN JUST INSTANTIATES + MAKE VISIBLE
-    public static void main(String[] args) {
-	Window2 g = new Window2();
-	g.setVisible(true);
+    public void actionPerformed(ActionEvent e){
+	String event = e.getActionCommand();
+	if(event.equals("CtoF")){
+	    String s = t.getText();
+	    try{
+		s = "" + TemperatureConversion.CtoF(Integer.parseInt(t.getText()));
+	    }catch(NumberFormatException x){
+		s = "invalid input";
+	    }catch(NullPointerException x){
+		s = "invalid input";
+	    }
+	    j.setText(s);
+	}
+	if(event.equals("FtoC")){
+	    String s = t.getText();
+	    try{
+		s = "" + TemperatureConversion.FtoC(Integer.parseInt(t.getText()));
+	    }catch(NumberFormatException x){
+		s = "invalid input";
+	    }catch(NullPointerException x){
+		s = "invalid input";
+	    }
+	    j.setText(s);	    
+	}
+    }
+    public static void main(String[]args){
+	TempConverterGUI tc = new TempConverterGUI();
+	tc.setVisible(true);
     }
 }
