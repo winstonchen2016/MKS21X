@@ -81,11 +81,13 @@ public class Sorts{
 
     public static String toString(int[]data){
 	String ans = "[";
-	for(int i = 0; i < data.length - 1; i++){
+	for(int i = 0; i < data.length; i++){
 	    ans += data[i];
-	    ans += ", ";
+	    if (i != data.length - 1){
+		ans += ", ";
+	    }
 	}
-	ans = ans + data[data.length - 1] + "]";
+	ans += "]";
 	return ans;
     }
 
@@ -104,5 +106,10 @@ public class Sorts{
 	int[]data3 = {5, 1, 4, 2, 8};
 	bubbleSort(data3);
 	System.out.println(toString(data3)); //[1, 2, 4, 5, 8]
+	int[]dataempty = {};
+	selectionSort(dataempty);
+	//insertionSort(dataempty);
+	//bubbleSort(dataempty);
+	System.out.println(toString(dataempty)); //[]
     }
 }
