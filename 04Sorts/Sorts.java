@@ -64,17 +64,17 @@ public class Sorts{
     public static void bubbleSort(int[] data){
 	int l = data.length - 1;
 	for(int i = 0; i < l; l -= 1){
+	    boolean hasSwapped = false;
 	    for(int a = 0; a < l; a +=1){
-		boolean hasSwapped = false;
 		if(data[a+1] < data[a]){
 		    hasSwapped = true;
 		    int temp = data[a];
 		    data[a] = data[a+1];
 		    data[a+1] = temp;
 		}
-		if(!hasSwapped){
-		    return;
-		}
+	    }
+	    if(!hasSwapped){
+		return;
 	    }
 	}
     }
@@ -103,6 +103,6 @@ public class Sorts{
 	System.out.println(toString(data2)); //[1, 2, 3, 4, 5, 6, 7, 9]
 	int[]data3 = {5, 1, 4, 2, 8};
 	bubbleSort(data3);
-	System.out.println(toString(data3)); //[1, 4, 2, 5, 8]
+	System.out.println(toString(data3)); //[1, 2, 4, 5, 8]
     }
 }
